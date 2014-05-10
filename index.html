@@ -1,0 +1,57 @@
+<html>
+<head>
+	<title>The Game</title>
+	<script type="text/javascript" src="phaser.min.js"></script>
+    <style type="text/css">
+        #theDiv {
+            margin:auto;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+        h1 {
+            text-align: center;
+            font-family: sans-serif;
+        }
+        li,ul {
+            text-align: center;
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+	<div id="theDiv" style="width:1000px; height:400px;">
+	
+	</div>
+	<h1>The Game</h1>
+	<ul>
+		<li>Adam Dally</li>
+		<li>Alex Goins</li>
+		<li>Emily Clarkson</li>
+		<li>Zeke Brewer</li>
+		<li>Brad Banter</li>
+	</ul>
+	<script type="text/javascript">
+		//var game = new Phaser.game(600, 400, Phaser.AUTO, 'theDiv', { preload: preload, create: create, update: update });
+		var game = new Phaser.Game(1000, 400, Phaser.AUTO, 'theDiv', { preload: preload, create: create, update: update });
+		function preload() {
+			this.game.stage.backgroundColor = '#DDF';
+			game.load.image('alex', 'assets/man.png');
+		}
+		function create() {
+			alex=game.add.sprite((game.width/2), game.height-48, 'alex');
+            alex.anchor.setTo(.5, .5);
+		}
+		function update() {
+            if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT)) {
+                alex.x -=5;
+            } else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT)) {
+                alex.x +=5;
+            }
+            if (alex.x<0) {alex.x=0;}
+            if (alex.x>game.width) {alex.x = game.width;}
+		}
+	</script>
+</body>
+</html>
